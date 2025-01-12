@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 using YamlDotNet.Core;
 
@@ -18,7 +19,7 @@ namespace GMBT
         static void Main(string[] args)
         {
             Console.WriteLine(CommandLine.Text.HeadingInfo.Default + Environment.NewLine + CommandLine.Text.CopyrightInfo.Default + Environment.NewLine);
-
+            Console.OutputEncoding = Encoding.UTF8;
             Internationalization.Init();
    
             try
