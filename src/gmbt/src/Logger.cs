@@ -116,11 +116,11 @@ namespace GMBT
             {
                 if (newLine)
                 {
-                    Console.WriteLine(msg, ConsoleColor.DarkGray);
+                    Console.WriteLine(msg);//, ConsoleColor.DarkGray);
                 }
                 else
                 {
-                    Console.Write(msg, ConsoleColor.DarkGray);
+                    Console.Write(msg);//, ConsoleColor.DarkGray);
                 }
             }
 
