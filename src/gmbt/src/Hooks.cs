@@ -48,7 +48,7 @@ namespace GMBT
 
                 Logger.Normal("Hooks.Run.WaitingForEnd".Translate());
 
-                if (Logger.Verbosity >= VerbosityLevel.Detailed)
+                if (Logger.Verbosity >= VerbosityLevel.Normal)
                 {
                     process.StartInfo.UseShellExecute = false;
                     process.StartInfo.RedirectStandardOutput = true;
@@ -57,7 +57,7 @@ namespace GMBT
                     {
                         if (args.Data != null)
                         {
-                            Logger.Detailed(args.Data);
+                            Logger.Normal(args.Data);
                         }
                     };
                     process.ErrorDataReceived += (object sender, DataReceivedEventArgs args) =>
@@ -71,7 +71,7 @@ namespace GMBT
 
                 process.Start();
 
-                if (Logger.Verbosity >= VerbosityLevel.Detailed)
+                if (Logger.Verbosity >= VerbosityLevel.Normal)
                 {
                     process.BeginOutputReadLine();
                     process.BeginErrorReadLine();
