@@ -8,7 +8,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>OutputUnitsUpdaterTests</RootNamespace>
     <AssemblyName>OutputUnitsUpdaterTests</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -56,12 +56,6 @@
     <Compile Include="HelperTests.cs" />
     <Compile Include="ParserTests.cs" />
     <Compile Include="SrcTests.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\OutputUnitsUpdater\OutputUnitsUpdater.csproj">
-      <Project>{99C1E851-D3AD-4898-8FF7-39941E8B0938}</Project>
-      <Name>OutputUnitsUpdater</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="SampleFiles\ouTest\Dialog.d">
