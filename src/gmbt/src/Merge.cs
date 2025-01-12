@@ -81,19 +81,20 @@ namespace GMBT
             }
         }
 
-        private List<string> excludeFiles (List<string> files)
+        private List<string> excludeFiles(List<string> files)
         {
             foreach (string path in Program.Config.ModFiles.Exclude)
             {
-                string pattern = path.Split("\\".ToCharArray()).Last();
+                string directoryPath = path.TrimEnd('\\');  // Ensure no trailing backslash
 
-                if (string.IsNullOrWhiteSpace(pattern) == false)
+                if (!string.IsNullOrWhiteSpace(directoryPath))
                 {
-                    FileInfo[] fis = new DirectoryInfo(path.Replace(pattern, string.Empty)).GetFiles(pattern, SearchOption.AllDirectories);
+                    DirectoryInfo dirInfo = new DirectoryInfo(directoryPath);
 
-                    foreach (FileInfo fi in fis)
+                    if (dirInfo.Exists)
                     {
-                        files.RemoveAll(x => Path.GetFullPath(x) == fi.FullName);
+                        // Remove all files that are within the specified directory and its subdirectories
+                        files.RemoveAll(x => Path.GetFullPath(x).StartsWith(dirInfo.FullName, StringComparison.OrdinalIgnoreCase));
                     }
                 }
             }
