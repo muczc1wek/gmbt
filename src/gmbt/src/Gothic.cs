@@ -59,7 +59,7 @@ namespace GMBT
 
             if (Process.GetProcessesByName(Path.GetFileNameWithoutExtension(exeFile)).Length > 0)
             {
-                Logger.Fatal("Gothic.Error.AlreadyRunning".Translate(GetGothicVersionName()));
+                Logger.Warn("Gothic.Error.AlreadyRunning".Translate(GetGothicVersionName()));
             }
 
             GothicINI = new IniFile(GetGameFile(GameFile.GothicIni));

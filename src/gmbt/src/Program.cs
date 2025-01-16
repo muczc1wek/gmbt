@@ -176,18 +176,18 @@ namespace GMBT
                             {
                                 if (Options.CommonTestCompile.ReInstall)
                                 {
-                                    Logger.Fatal("Install.Error.Reinstall.RequireFullTest".Translate() + " " + "Install.Error.RunFullTest".Translate());
+                                    Logger.Warn("Install.Error.Reinstall.RequireFullTest".Translate() + " " + "Install.Error.RunFullTest".Translate());
                                 }
                                 else
                                 {
-                                    Logger.Fatal("Install.Error.RequireFullTest".Translate() + " " + "Install.Error.RunFullTest".Translate());
+                                    Logger.Warn("Install.Error.RequireFullTest".Translate() + " " + "Install.Error.RunFullTest".Translate());
                                 }
                             }
                             else if (Options.CommonTestCompile.Merge != Merge.MergeOptions.All)
                             {
                                 if (Options.CommonTestCompile.ReInstall)
                                 {
-                                    Logger.Fatal("Install.Error.Reinstall.RequireMergeAll".Translate() + " " + "Install.Error.RunMergeAll".Translate());
+                                    Logger.Warn("Install.Error.Reinstall.RequireMergeAll".Translate() + " " + "Install.Error.RunMergeAll".Translate());
                                 }
                                 else
                                 {
