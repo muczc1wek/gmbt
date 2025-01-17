@@ -211,10 +211,10 @@ namespace GMBT
                         {
                             if (Options.CommonTestCompile.Full)
                             {
-                                if (Options.TestVerb.NoReparse)
-                                {
-                                    Logger.Fatal("Test.Error.RequireReparse".Translate());
-                                }
+                                //if (Options.TestVerb.NoReparse)
+                                //{
+                                //    Logger.Fatal("Test.Error.RequireReparse".Translate());
+                                //}
 
                                 new Test(gothic, TestMode.Full).Start();
                             }
@@ -255,12 +255,9 @@ namespace GMBT
                     {
                         if (install.LastConfigPathChanged())
                         {
-                            Logger.Fatal("Install.Error.Reinstall.RequireFullTest".Translate() + " " + "Install.Error.RunFullTest".Translate());
+                            Logger.Warn("Install.Error.Reinstall.RequireFullTest".Translate() + " " + "Install.Error.RunFullTest".Translate());
                         }
-                        else
-                        {
-                            new Pack(gothic).Start();
-                        }                        
+                        new Pack(gothic).Start();                    
                     }
                 }
             }
