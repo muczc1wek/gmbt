@@ -85,20 +85,36 @@ namespace GMBT
         {
             foreach (string path in Program.Config.ModFiles.Exclude)
             {
-                string directoryPath = path.TrimEnd('\\');  // Ensure no trailing backslash
+                string pattern = path.Split("\\".ToCharArray()).Last();
 
-                if (!string.IsNullOrWhiteSpace(directoryPath))
+                if (string.IsNullOrWhiteSpace(pattern) == false)
                 {
-                    DirectoryInfo dirInfo = new DirectoryInfo(directoryPath);
+                    FileInfo[] fis = new DirectoryInfo(path.Replace(pattern, string.Empty)).GetFiles(pattern, SearchOption.AllDirectories);
 
-                    if (dirInfo.Exists)
+                    foreach (FileInfo fi in fis)
                     {
-                        // Remove all files that are within the specified directory and its subdirectories
-                        files.RemoveAll(x => Path.GetFullPath(x).StartsWith(dirInfo.FullName, StringComparison.OrdinalIgnoreCase));
+                        files.RemoveAll(x => Path.GetFullPath(x) == fi.FullName);
                     }
                 }
             }
+            if (Program.Config.ModFiles.ExcludeDir != null)
+            {
+                foreach (string path in Program.Config.ModFiles.ExcludeDir)
+                {
+                    string directoryPath = path.TrimEnd('\\');  // Ensure no trailing backslash
 
+                    if (!string.IsNullOrWhiteSpace(directoryPath))
+                    {
+                        DirectoryInfo dirInfo = new DirectoryInfo(directoryPath);
+
+                        if (dirInfo.Exists)
+                        {
+                            // Remove all files that are within the specified directory and its subdirectories
+                            files.RemoveAll(x => Path.GetFullPath(x).StartsWith(dirInfo.FullName, StringComparison.OrdinalIgnoreCase));
+                        }
+                    }
+                }
+            }
             return files;
         }
 
