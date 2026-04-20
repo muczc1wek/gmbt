@@ -79,6 +79,7 @@ namespace GMBT
             {
                 mergeDirectory(directoryPath);
             }
+            mergeUnion();
         }
 
         private List<string> excludeFiles(List<string> files)
@@ -158,6 +159,22 @@ namespace GMBT
             }
 
             copyFiles(files, directoryPath);
+        }
+
+        private void mergeUnion ()
+        {
+            string systemDir = "union\\System";
+            if (new DirectoryInfo(systemDir).Exists)
+            {
+                DirectoryHelper system = new DirectoryHelper(systemDir);
+                system.CopyTo(Path.GetFullPath(gothic.GetGameDirectory(Gothic.GameDirectory.System)));
+            }
+            string pluginsDir = "union\\Plugins";
+            if (new DirectoryInfo(pluginsDir).Exists)
+            {
+                DirectoryHelper plugins = new DirectoryHelper("union\\Plugins");
+                plugins.CopyTo(Path.GetFullPath(gothic.GetGameDirectory(Gothic.GameDirectory.Data)) + "\\Plugins");
+            }
         }
     }
 }
