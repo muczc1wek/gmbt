@@ -18,8 +18,16 @@ namespace GMBT
         {
             this.gothic = gothic;        
         }
-         
+
         public void RunBuilder()
+        {
+            BuildMain();
+            BuildUnion();
+        }
+
+
+
+        public void BuildMain()
         {
             Logger.Normal("VDF.Building".Translate());
 
@@ -49,6 +57,10 @@ namespace GMBT
             {
                 directoriesToPack.Add(@"_work\Data\Sound");
             }
+            if (Program.Options.BuildVerb.PackMusic == true || Program.Options.PackVerb.PackMusic == true)
+            {
+                directoriesToPack.Add(@"_work\Data\Music");
+            }
 
             string vdfOutput = Program.Options.BuildVerb.Output ?? Program.Options.PackVerb.Output ?? Program.Config.ModVdf.Output;
 
@@ -62,6 +74,36 @@ namespace GMBT
             }
 
             VDFScript script = new VDFScript(gothic.GetGameDirectory(Gothic.GameDirectory.Root), vdfOutput, Program.Options.BuildVerb.Comment ?? Program.Options.PackVerb.Comment ?? Program.Config.ModVdf.Comment ?? Program.Config.ProjectName ?? string.Empty, directoriesToPack, include, Program.Config.ModVdf.Exclude);
+
+            builder.Arguments = "/B " + script.GenerateAndGetPath();
+
+            Process.Start(builder).WaitForExit();
+        }
+
+        public void BuildUnion()
+        {
+            Logger.Normal("VDF.Building".Translate());
+
+            if (Directory.Exists(Path.GetDirectoryName(Program.Config.ModVdf.Output)) == false)
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(Program.Config.ModVdf.Output));
+            }
+
+            ProcessStartInfo builder = new ProcessStartInfo
+            {
+                FileName = Program.AppData.GetTool("GothicVDFS.exe"),
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+
+            directoriesToPack.Add(@"System");
+            directoriesToPack.Add(@"System\Autorun");
+
+            string vdfOutput = Program.Options.BuildVerb.Output ?? Program.Options.PackVerb.Output ?? Program.Config.ModVdf.Output;
+            vdfOutput = Path.Combine(Path.GetDirectoryName(vdfOutput), Path.GetFileNameWithoutExtension(vdfOutput) + "_union" + Path.GetExtension(vdfOutput));
+
+
+            VDFScript script = new VDFScript("union", vdfOutput, Program.Options.BuildVerb.Comment ?? Program.Options.PackVerb.Comment ?? Program.Config.ModVdf.Comment ?? Program.Config.ProjectName ?? string.Empty, directoriesToPack, null, null);
 
             builder.Arguments = "/B " + script.GenerateAndGetPath();
 

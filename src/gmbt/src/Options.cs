@@ -180,6 +180,10 @@ namespace GMBT
         HelpText = "Do not pack any sounds (WAVs) to VDF.")]
         public bool NoPackSounds { get; set; }
 
+        [Option("packmusic",
+        HelpText = "Pack music folder to VDF.")]
+        public bool PackMusic { get; set; }
+
         [Option("comment",
         HelpText = "Set or override comment of VDF. Default is set in config.")]
         public string Comment { get; set; }
@@ -202,6 +206,10 @@ namespace GMBT
         [Option("nopacksounds",
         HelpText = "Do not pack any sounds (WAVs) to VDF.")]
         public bool NoPackSounds { get; set; }
+
+        [Option("packmusic",
+        HelpText = "Pack music folder to VDF.")]
+        public bool PackMusic { get; set; }
 
         [Option("comment",
         HelpText = "Set or override comment of VDF. Default is set in config.")]
