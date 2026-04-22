@@ -127,9 +127,6 @@ namespace GMBT
     {
         public List<string> Assets { get; set; }
         public List<string> Exclude { get; set; }
-
-        public List<string> ExcludeDir { get; set; }
-
         public string DefaultWorld { get; set; }
     }
 

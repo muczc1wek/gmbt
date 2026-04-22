@@ -98,24 +98,7 @@ namespace GMBT
                     }
                 }
             }
-            if (Program.Config.ModFiles.ExcludeDir != null)
-            {
-                foreach (string path in Program.Config.ModFiles.ExcludeDir)
-                {
-                    string directoryPath = path.TrimEnd('\\');  // Ensure no trailing backslash
 
-                    if (!string.IsNullOrWhiteSpace(directoryPath))
-                    {
-                        DirectoryInfo dirInfo = new DirectoryInfo(directoryPath);
-
-                        if (dirInfo.Exists)
-                        {
-                            // Remove all files that are within the specified directory and its subdirectories
-                            files.RemoveAll(x => Path.GetFullPath(x).StartsWith(dirInfo.FullName, StringComparison.OrdinalIgnoreCase));
-                        }
-                    }
-                }
-            }
             return files;
         }
 
