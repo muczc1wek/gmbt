@@ -296,6 +296,11 @@ namespace GMBT
         [Option('D', "devmode",
         HelpText = "Dev mode of game (marvin mode).")]
         public bool DevMode { get; set; }
+
+        [Option("cleanup",
+        MetaValue = "<preset>",
+        HelpText = "Clean directories specified in CleanupDirectories preset.")]
+        public string Cleanup { get; set; }
     }
 
     /// <summary> 

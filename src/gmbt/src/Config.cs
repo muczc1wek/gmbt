@@ -117,6 +117,7 @@ namespace GMBT
 
         public List<Dictionary<string, string>> Install { get; set; }
         public List<Dictionary<string, string>> GothicIniOverrides { get; set; }
+        public Dictionary<string, List<string>> CleanupDirectories { get; set; }
 
         public HooksTree Hooks { get; set; }
 

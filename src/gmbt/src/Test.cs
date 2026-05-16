@@ -102,7 +102,10 @@ namespace GMBT
         public override void Start()
         {
             DetectIfWorldIsNotExists();
-
+            if (Program.Config.CleanupDirectories != null)
+            {
+                new Cleanup(gothic, Program.Options.TestVerb.Cleanup).CleanAssets();
+            }
             if (Program.Options.CommonTestCompile.Merge != Merge.MergeOptions.None)
             {
                 runHooks(HookType.Pre, HookEvent.AssetsMerge);
