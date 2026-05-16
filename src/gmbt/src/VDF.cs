@@ -22,9 +22,12 @@ namespace GMBT
         public void RunBuilder()
         {
             BuildMain();
-            BuildUnion();
+            if (Program.Options.BuildVerb.Union == true || Program.Options.PackVerb.Union == true)
+            {
+                BuildUnion();
+            }
+            
         }
-
 
 
         public void BuildMain()
@@ -95,6 +98,8 @@ namespace GMBT
                 UseShellExecute = false,
                 CreateNoWindow = true
             };
+            directoriesToPack.Clear();
+            directoriesToInclude.Clear();
 
             directoriesToPack.Add(@"System");
             directoriesToPack.Add(@"System\Autorun");

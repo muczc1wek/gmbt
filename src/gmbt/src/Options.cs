@@ -184,6 +184,10 @@ namespace GMBT
         HelpText = "Pack music folder to VDF.")]
         public bool PackMusic { get; set; }
 
+        [Option("union",
+        HelpText = "Create union VDF.")]
+        public bool Union { get; set; }
+
         [Option("comment",
         HelpText = "Set or override comment of VDF. Default is set in config.")]
         public string Comment { get; set; }
@@ -210,6 +214,10 @@ namespace GMBT
         [Option("packmusic",
         HelpText = "Pack music folder to VDF.")]
         public bool PackMusic { get; set; }
+
+        [Option("union",
+        HelpText = "Create union VDF.")]
+        public bool Union { get; set; }
 
         [Option("comment",
         HelpText = "Set or override comment of VDF. Default is set in config.")]
