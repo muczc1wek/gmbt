@@ -163,8 +163,14 @@ namespace GMBT
 
                 WorkingDirectory = GetGameDirectory(GameDirectory.System)
             };
-
-            gothic.Arguments = GetCommonParameters().ToString() + arguments.ToString() + Program.Options.CommonTestBuildCompile.AdditionalGothicParameters;
+            // predefined gmbt paramaters cant handle spaces in additional parameters [muczc1wek]
+            string additionalParams = string.Empty;
+            if (Program.Options.CommonTestBuildCompile.AdditionalGothicParameters != null)
+            {
+                additionalParams = Program.Options.CommonTestBuildCompile.AdditionalGothicParameters;
+                additionalParams = additionalParams.Replace('\\', ' ');
+            }
+            gothic.Arguments = GetCommonParameters().ToString() + arguments.ToString() + additionalParams;
 
             Logger.Detailed("Gothic.RunningWithParameters".Translate(GetGothicVersionName(), gothic.Arguments));
 
