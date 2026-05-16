@@ -41,6 +41,47 @@ This project was developed primarily for the purpose of assisting the SoulFire t
 
 Tool available in English <img src="https://www.crwflags.com/fotw/images/g/gb.gif" width = "25px">, Polish <img src="https://www.crwflags.com/fotw/images/p/pl.gif" width = "25px"> and Slovak <img src="https://www.crwflags.com/fotw/images/s/sk.gif" width = "25px">.
 
+## Changes in this fork
+
+### Union directory
+In the main project folder a directory named `union` could be added to simplify working with union plugins and patches.
+
+The structure of this directory should be as follows:
+```
+union/
+├─ Plugins/
+│  ├─ zExample.vdf
+├─ System/
+│  ├─ Autorun/
+│  │  ├─ zExample.dll
+```
+Plugins directory will be copied into <gothic-root>/Data/Plugins and System into <gothic-root>/System.
+
+### Packaging
+When running `gmbt pack` or `gmbt build` additional parameters could be used:
+
+`--union` - creates additional VDF volume with files form `union/System`
+
+`--packmusic` - packs `_work/Data/Music` directory to the main VDF volume
+
+### Direcotry cleanup
+Directories to be cleaned up before merging assets with `gmbt test` could be specified in the config file.
+
+```yaml
+cleanupDirectories:
+  default:
+    - Scripts
+    - ../../system/Autorun
+  preset:
+    - Meshes/_compiled
+    - Anims/_compiled
+    - Textures/_compiled
+```
+Paths are relative to `<gothic-root>/_work/Data` directory. 
+`default` is used every time, and additional presets could be defined and cleaned with `--cleanup=preset` parameter.
+
+
+
 ## Table of Contents
 
 * [How does it work?](#how-does-it-work)
